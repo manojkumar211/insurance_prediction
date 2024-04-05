@@ -1,6 +1,9 @@
 # Data:-
 ```
 - Data is related to insurance. whether person will take insurance or not based on some parameters.
+- Input variables are ['age', 'sex', 'bmi', 'children', 'smoker', 'region']
+- Output variable is ['expenses']
+
 ```
 
 ## shape of the data:-
@@ -43,5 +46,34 @@ max        64.000000
 - Thers are 47 unique values in the Age column.
 - The Age column is correlated 29% of the time with the Expenses column.
 - There is no Outliers are present in the Age column.
+- Total 181 persons can take insurance in Age between 18 to 39.
+- Total 78 persons can take insurance in Age between 40 to 49.
+- Total 74 persons can take insurance in Age between 50 to 59.
+- Total 87 persons can take insurance in Age between 60 to 70.
+- Might be total 420 members are ready to take insurance instead of 1338, which means 918 members are not ready to take insurance based on Age group.
+
+```
+
+## Gender column:-
+```
+- In Gender column, we have female and male unique values.
+['female', 'male']
+
+male      676
+female    662
+
+- Total males are 676 and females are 662. the two categories are equally destributed the data. so, there is no any
+inbalanced data, which means we are having balanced data.
+
+- There is no any Null values are in Gender column.
+- Total 115 female smokers are here in our data.
+- Total 547 female non-smokers are here in our data.
+- Total 159 male smokers are here in our data.
+- Total 517 male non-smokers are here in our data.
+- 115 female smokers are taken insurance.
+- 84 female non-smokers are taken insurance.
+- 158 male smokers are taken insurance.
+- 63 male non-smokers are taken insurance.
+- In female or male, Who those are having less children those people are taking insurance.
 
 ```

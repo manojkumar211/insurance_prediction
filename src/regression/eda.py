@@ -2,12 +2,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from data import df
+from data_cleaning import df
 
 
-continuous_variables=df[['bmi','expenses']]
-discrete_count=df[['age','children']]
-discrete_categorical=df[['sex','smoker','region']]
+continuous_variables=['bmi','expenses']
+discrete_count=['age','children']
+discrete_categorical=['gender','smoker','region']
 
 
 
@@ -24,9 +24,14 @@ class eda_age:
     age_zeros=df[df['age']==0]
     age_unique=len(df['age'].unique())
     age_corr_output=df[['age','expenses']].corr()
+    age_18_40=df[(df['age']>=18) & (df['age']<40) & (df['expenses']>13270)][['age','expenses']].count()
+    age_40_50=df[(df['age']>=40) & (df['age']<50) & (df['expenses']>13270)][['age','expenses']].count()
+    age_50_60=df[(df['age']>=50) & (df['age']<60) & (df['expenses']>13270)][['age','expenses']].count()
+    age_60_70=df[(df['age']>=60) & (df['age']<70) & (df['expenses']>13270)][['age','expenses']].count()
+
 
     def __init__(self,age_shape,age_min,age_max,age_describe,age_nullvalue,age_skew,age_std,age_var,age_zeros,
-                 age_unique,age_corr_output):
+                 age_unique,age_corr_output,age_18_40,age_40_50,age_50_60,age_60_70):
         
         self.age_shape=age_shape
         self.age_min=age_min
@@ -39,7 +44,11 @@ class eda_age:
         self.age_zeros=age_zeros
         self.age_unique=age_unique
         self.age_corr_output=age_corr_output
-
+        self.age_18_40=age_18_40
+        self.age_40_50=age_40_50
+        self.age_50_60=age_50_60
+        self.age_60_70=age_60_70
+        
     def age_column_shape(self):
         return self.age_shape
     
@@ -73,6 +82,19 @@ class eda_age:
     def age_column_corr_output(self):
         return self.age_corr_output
     
+    def age_column_18_40(self):
+        return self.age_18_40
+    
+    def age_column_40_50(self):
+        return self.age_40_50
+    
+    def age_column_50_60(self):
+        return self.age_50_60
+    
+    def age_column_60_70(self):
+        return self.age_60_70
+    
+    
 
 fig,ax=plt.subplots(figsize=(5,5))
 sns.boxplot(data=df['age'],ax=ax) # type: ignore
@@ -90,7 +112,7 @@ plt.title("Age column's scatter plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/scatterplots/age_scatter.png")
 
 
-sns.pairplot(data=df,vars=continuous_variables,hue='sex') # type: ignore
+sns.pairplot(data=df,vars=continuous_variables,hue='gender') # type: ignore
 plt.title("Age column's pair plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/pairplots/age_pair.png")
 
@@ -100,3 +122,32 @@ sns.heatmap(data=df[['age','expenses']].corr(),cmap='tab20',annot=True,ax=ax)
 plt.title("Age column's heatmap plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/heatmap/age_heatmap.png")
 
+
+
+
+class eda_gender:
+
+    df['gender'].unique().tolist()
+    df['gender'].value_counts()
+    pd.crosstab(df['gender'],df['smoker'],margins=True)
+    df['gender'].isnull().sum()
+    df[(df['gender']=='female') & (df['smoker']=='yes')][['gender','smoker']].count()
+    df[(df['gender']=='female') & (df['smoker']=='no')][['gender','smoker']].count()
+    df[(df['gender']=='male') & (df['smoker']=='yes')][['gender','smoker']].count()
+    df[(df['gender']=='male') & (df['smoker']=='no')][['gender','smoker']].count()
+    df[(df['gender']=='female') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='female') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
+    df[(df['gender']=='male') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
