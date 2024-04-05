@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-df=pd.read_csv("E:/NareshiTech/insurance_prediction/maindata/insurance.csv")
+df=pd.read_csv("E:/NareshiTech/insurance_prediction/maindata/insurance.csv") # type: ignore
 
 
 
