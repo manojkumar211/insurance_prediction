@@ -127,27 +127,111 @@ plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/heatmap/age_heatma
 
 class eda_gender:
 
-    df['gender'].unique().tolist()
-    df['gender'].value_counts()
-    pd.crosstab(df['gender'],df['smoker'],margins=True)
-    df['gender'].isnull().sum()
-    df[(df['gender']=='female') & (df['smoker']=='yes')][['gender','smoker']].count()
-    df[(df['gender']=='female') & (df['smoker']=='no')][['gender','smoker']].count()
-    df[(df['gender']=='male') & (df['smoker']=='yes')][['gender','smoker']].count()
-    df[(df['gender']=='male') & (df['smoker']=='no')][['gender','smoker']].count()
-    df[(df['gender']=='female') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='female') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
-    df[(df['gender']=='male') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_unique=df['gender'].unique().tolist()
+    gender_values=df['gender'].value_counts()
+    gender_smoker=pd.crosstab(df['gender'],df['smoker'],margins=True)
+    gender_nullvalue=df['gender'].isnull().sum()
+    gender_female_smok=df[(df['gender']=='female') & (df['smoker']=='yes')][['gender','smoker']].count()
+    gender_female_nosmok=df[(df['gender']=='female') & (df['smoker']=='no')][['gender','smoker']].count()
+    gender_male_smok=df[(df['gender']=='male') & (df['smoker']=='yes')][['gender','smoker']].count()
+    gender_male_nosmok=df[(df['gender']=='male') & (df['smoker']=='no')][['gender','smoker']].count()
+    gender_female_smok_exp=df[(df['gender']=='female') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_nosmok_exp=df[(df['gender']=='female') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_smok_exp=df[(df['gender']=='male') & (df['smoker']=='yes') & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_nosmok_exp=df[(df['gender']=='male') & (df['smoker']=='no') & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil0_exp=df[(df['gender']=='female') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil1_exp=df[(df['gender']=='female') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil2_exp=df[(df['gender']=='female') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil3_exp=df[(df['gender']=='female') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil4_exp=df[(df['gender']=='female') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_female_chil5_exp=df[(df['gender']=='female') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil0_exp=df[(df['gender']=='male') & (df['children']==0) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil1_exp=df[(df['gender']=='male') & (df['children']==1) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil2_exp=df[(df['gender']=='male') & (df['children']==2) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil3_exp=df[(df['gender']=='male') & (df['children']==3) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil4_exp=df[(df['gender']=='male') & (df['children']==4) & (df['expenses']>13270)][['gender','expenses']].count()
+    gender_male_chil5_exp=df[(df['gender']=='male') & (df['children']==5) & (df['expenses']>13270)][['gender','expenses']].count()
+
+
+    def __init__(self,gender_unique,gender_values,gender_smoker,gender_nullvalue,gender_female_smok,gender_female_nosmok,
+                 gender_male_smok,gender_male_nosmok,gender_female_smok_exp,gender_female_nosmok_exp,gender_male_smok_exp,
+                 gender_male_nosmok_exp,gender_female_chil0_exp,gender_female_chil1_exp,gender_female_chil2_exp,gender_female_chil3_exp,
+                 gender_female_chil4_exp,gender_female_chil5_exp,gender_male_chil0_exp,gender_male_chil1_exp,gender_male_chil2_exp,
+                 gender_male_chil3_exp,gender_male_chil4_exp,gender_male_chil5_exp):
+        
+        self.gender_unique=gender_unique
+        self.gender_values=gender_values
+        self.gender_smoker=gender_smoker
+        self.gender_nullvalue=gender_nullvalue
+        self.gender_female_smok=gender_female_smok
+        self.gender_female_nosmok=gender_female_nosmok
+        self.gender_male_smok=gender_male_smok
+        self.gender_male_nosmok=gender_male_nosmok
+        self.gender_female_smok_exp=gender_female_smok_exp
+        self.gender_female_nosmok_exp=gender_female_nosmok_exp
+        self.gender_male_smok_exp=gender_male_smok_exp
+        self.gender_male_nosmok_exp=gender_male_nosmok_exp
+        self.gender_female_chil0_exp=gender_female_chil0_exp
+        self.gender_female_chil1_exp=gender_female_chil1_exp
+        self.gender_female_chil2_exp=gender_female_chil2_exp
+        self.gender_female_chil3_exp=gender_female_chil3_exp
+        self.gender_female_chil4_exp=gender_female_chil4_exp
+        self.gender_female_chil5_exp=gender_female_chil5_exp
+        self.gender_male_chil0_exp=gender_male_chil0_exp
+        self.gender_male_chil1_exp=gender_male_chil1_exp
+        self.gender_male_chil2_exp=gender_male_chil2_exp
+        self.gender_male_chil3_exp=gender_male_chil3_exp
+        self.gender_male_chil4_exp=gender_male_chil4_exp
+        self.gender_male_chil5_exp=gender_male_chil5_exp
+
+    def gender_column_unique(self):
+        return self.gender_unique
+    def gender_column_values(self):
+        return self.gender_values
+    def gender_column_smoker(self):
+        return self.gender_smoker
+    def gender_column_nullvalue(self):
+        return self.gender_nullvalue
+    def gender_column_female_smok(self):
+        return self.gender_female_smok
+    def gender_column_female_nosmok(self):
+        return self.gender_female_nosmok
+    def gender_column_male_smok(self):
+        return self.gender_male_smok
+    def gender_column_male_nosmok(self):
+        return self.gender_male_nosmok
+    def gender_column_female_smok_exp(self):
+        return self.gender_female_smok_exp
+    def gender_column_female_nosmok_exp(self):
+        return self.gender_female_nosmok_exp
+    def gender_column_male_smok_exp(self):
+        return self.gender_male_smok_exp
+    def gender_column_male_nosmok_exp(self):
+        return self.gender_male_nosmok_exp
+    def gender_column_female_chil0_exp(self):
+        return self.gender_female_chil0_exp
+    def gender_column_female_chil1_exp(self):
+        return self.gender_female_chil1_exp
+    def gender_column_female_chil2_exp(self):
+        return self.gender_female_chil2_exp
+    def gender_column_female_chil3_exp(self):
+        return self.gender_female_chil3_exp
+    def gender_column_female_chil4_exp(self):
+        return self.gender_female_chil4_exp
+    def gender_column_female_chil5_exp(self):
+        return self.gender_female_chil5_exp
+    def gender_column_male_chil0_exp(self):
+        return self.gender_male_chil0_exp
+    def gender_column_male_chil1_exp(self):
+        return self.gender_male_chil1_exp
+    def gender_column_male_chil2_exp(self):
+        return self.gender_male_chil2_exp
+    def gender_column_male_chil3_exp(self):
+        return self.gender_male_chil3_exp
+    def gender_column_male_chil4_exp(self):
+        return self.gender_male_chil4_exp
+    def gender_column_male_chil5_exp(self):
+        return self.gender_male_chil5_exp
+    
+
+
