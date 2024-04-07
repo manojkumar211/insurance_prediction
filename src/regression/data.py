@@ -70,4 +70,6 @@ class data_information:
     
 
 
+df.rename(columns={'sex':'gender'},inplace=True)
 
+"""print(df['bmi'][1087])"""

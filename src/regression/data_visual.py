@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from data_cleaning import df
+from data import df
+from data_cleaning import ds
 from eda import continuous_variables
 
 
@@ -14,8 +15,9 @@ plt.title("Age column's Box plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/age/age_box.png")
 
 fig,ax=plt.subplots(figsize=(5,5))
-sns.distplot(df['age'],ax=ax) # type: ignore
+sns.distplot(df['age'],ax=ax,label='skewness {}'.format(df['age'].skew())) # type: ignore
 plt.title("Age column's dist plot")
+plt.legend()
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/age/age_dist.png")
 
 fig,ax=plt.subplots(figsize=(5,5))
@@ -64,8 +66,14 @@ plt.title("BMI column's Box plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/bmi/bmi_box.png")
 
 fig,ax=plt.subplots(figsize=(5,5))
-sns.distplot(df['bmi'],ax=ax) # type: ignore
+sns.boxplot(data=ds['bmi'],ax=ax) # type: ignore
+plt.title("BMI column's Box plot after Outliers")
+plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/bmi/bmi_box1.png")
+
+fig,ax=plt.subplots(figsize=(5,5))
+sns.distplot(df['bmi'],ax=ax,label='skewness {}'.format(df['bmi'].skew())) # type: ignore
 plt.title("bmi column's dist plot")
+plt.legend()
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/bmi/bmi_dist.png")
 
 fig,ax=plt.subplots(figsize=(5,5))
@@ -144,3 +152,28 @@ plt.pie(df['region'].value_counts(sort=False),labels=df['region'].unique(),autop
 plt.legend()
 plt.title("region Pie plot")
 plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/region/region_pie.png")
+
+
+# Expenses Column:-
+
+fig,ax=plt.subplots(figsize=(5,5))
+sns.boxplot(data=df['expenses'],ax=ax) # type: ignore
+plt.title("expenses column's Box plot")
+plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/expenses/expenses_box.png")
+
+fig,ax=plt.subplots(figsize=(5,5))
+sns.distplot(df['expenses'],ax=ax,label='skewness {}'.format(df['expenses'].skew())) # type: ignore
+plt.title("expenses column's dist plot")
+plt.legend()
+plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/expenses/expenses_dist.png")
+
+fig,ax=plt.subplots(figsize=(5,5))
+sns.scatterplot(data=df,x='expenses',y='expenses')
+plt.title("expenses column's scatter plot")
+plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/expenses/expenses_scatter.png")
+
+
+fig,ax=plt.subplots(figsize=(10,5))
+sns.heatmap(data=df[['age','bmi', 'children','expenses']].corr(),cmap='tab20',annot=True,ax=ax)
+plt.title("expenses column's heatmap plot")
+plt.savefig("E:/NareshiTech/insurance_prediction/visual_plots/expenses/expenses_heatmap.png")
